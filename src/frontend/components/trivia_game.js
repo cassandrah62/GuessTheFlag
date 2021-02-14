@@ -59,7 +59,8 @@ export class TriviaGame extends React.Component {
         
         this.setState({
           country: res,
-          hasAlreadyAnswered: false
+          hasAlreadyAnswered: false,
+          value: ''
         });
     });
     }
@@ -80,7 +81,8 @@ export class TriviaGame extends React.Component {
       }
 
       this.setState({
-        hasAlreadyAnswered: true
+        hasAlreadyAnswered: true,
+        value: ''
       })
     }
     skipQuestion() {
@@ -90,13 +92,17 @@ export class TriviaGame extends React.Component {
         
         this.setState({
           country: res,
-          hasAlreadyAnswered: false
+          hasAlreadyAnswered: false,
+          value: ''
         });
     });
     }
 
     addCorrectAnswer() {
-      this.state.correct += 1;
+      let new_score = this.state.correct += 1;
+      this.setState({
+        correct: new_score
+      })
     }
 
     addIncorrectAnswer() {
@@ -107,11 +113,17 @@ export class TriviaGame extends React.Component {
     }
 
     addQuestion() {
-      this.state.questions += 1;
+      let new_score = this.state.questions += 1;
+      this.setState({
+        questions: new_score
+      })
     }
 
     addSkip() {
-      this.state.skipped += 1;
+      let new_score = this.state.skipped += 1;
+      this.setState({
+        skipped: new_score
+      })
     }
 
  
@@ -156,7 +168,7 @@ export class TriviaGame extends React.Component {
           </div>
           <div className = "TextBox">
              <input className = "Answer"
-              type="text" id = 'answer' value={this.state.name} onChange={this.handleChange} />
+              type="text" id = 'answer' value={this.state.value} onChange={this.handleChange} />
           </div>
           <div className="triviaButtons">
               {(this.state.isAnswerEntered && !this.state.hasAlreadyAnswered) ?
