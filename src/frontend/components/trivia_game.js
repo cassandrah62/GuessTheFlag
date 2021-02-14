@@ -53,7 +53,6 @@ export class TriviaGame extends React.Component {
 
     nextQuestion() {
 
-      this.addQuestion()
     
       getNewQuestion().then(res => {
         
@@ -72,11 +71,13 @@ export class TriviaGame extends React.Component {
      
       if (answer === this.state.country.name.toLowerCase()) {
         alert("You are correct!")
-        this.addCorrectAnswer();  
+        this.addCorrectAnswer();
+        this.addQuestion()  
  
       } else if (answer !== this.state.country.name.toLowerCase()){
         alert ("Sorry you are incorrect. The correct answer is " + this.state.country.name);
         this.addIncorrectAnswer();
+        this.addQuestion()
            
       }
 
