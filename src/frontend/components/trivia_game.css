@@ -1,0 +1,95 @@
+.triviaGame {
+    text-align: center;
+}
+
+/* .triviaButtons {
+    width: 600px;
+    height: 100px;
+} */
+
+.Submit {
+    background-color: red;
+    border: none;
+    color: black;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    width: 25%;
+    margin-left: 10%;
+    align-self: center;
+    
+    
+}
+
+.Next {
+    background-color: red;
+    border: none;
+    color: black;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    width: 25%;
+    margin-right: 10%;
+    
+}
+
+.Flag {
+    align-content: center;
+    
+    max-width: 600px;
+    max-height: 400px;
+    border: 4px solid black;
+}
+
+.Answer {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 28pt;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    width: 60%;
+    height: 40%
+    
+
+}
+
+.NotAvailable {
+    background-color: rgb(75, 75, 75);
+    border: none;
+    color: black;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    width: 25%;
+    margin-left: 10%;
+    
+}
+
+.Score {
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: left;
+}
+
+.Skip {
+    background-color: red;
+    border: none;
+    color: black;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    width: 25%;
+    align-self: center;
+
+}
+    
