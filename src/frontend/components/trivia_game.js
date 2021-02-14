@@ -16,7 +16,8 @@ export class TriviaGame extends React.Component {
         value: '',
         country: new Country('Canada', 'https://restcountries.eu/data/can.svg'),
         isMounted: false,
-        isAnswerEntered: false
+        isAnswerEntered: false,
+        hasAlreadyAnswered: false
       };
 
       this.handleChange = this.handleChange.bind(this);
@@ -57,7 +58,8 @@ export class TriviaGame extends React.Component {
       getNewQuestion().then(res => {
         
         this.setState({
-          country: res
+          country: res,
+          hasAlreadyAnswered: false
         });
     });
     }
@@ -65,20 +67,21 @@ export class TriviaGame extends React.Component {
     submitAnswer(){
 
       var answer = document.getElementById('answer').value;
+      
      
       if (answer === this.state.country.name) {
         alert("You are correct!")
-        this.addCorrectAnswer();
-        
-        
+        this.addCorrectAnswer();  
  
       } else if (answer !== this.state.country.name ){
         alert ("Sorry you are incorrect. The correct answer is " + this.state.country.name);
         this.addIncorrectAnswer();
-       
-        
+           
       }
 
+      this.setState({
+        hasAlreadyAnswered: true
+      })
     }
     skipQuestion() {
 
@@ -86,7 +89,8 @@ export class TriviaGame extends React.Component {
       getNewQuestion().then(res => {
         
         this.setState({
-          country: res
+          country: res,
+          hasAlreadyAnswered: false
         });
     });
     }
@@ -96,7 +100,10 @@ export class TriviaGame extends React.Component {
     }
 
     addIncorrectAnswer() {
-      this.state.incorrect += 1;
+      let new_score = this.state.incorrect += 1;
+      this.setState({
+        incorrect: new_score
+      })
     }
 
     addQuestion() {
@@ -152,7 +159,7 @@ export class TriviaGame extends React.Component {
               type="text" id = 'answer' value={this.state.name} onChange={this.handleChange} />
           </div>
           <div className="triviaButtons">
-              {this.state.isAnswerEntered ?
+              {(this.state.isAnswerEntered && !this.state.hasAlreadyAnswered) ?
                <button className="Submit"
                style={{float: 'left'}}
                onClick={() => this.submitAnswer() }>
@@ -160,7 +167,7 @@ export class TriviaGame extends React.Component {
                </button> :
 
                <button className="NotAvailable"
-               disabled={!this.state.isAnswerEntered}
+               disabled={true}
                style={{float: 'left'}} 
                onClick={() => this.submitAnswer() }>
                Submit Answer
