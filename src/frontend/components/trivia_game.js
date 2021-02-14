@@ -67,14 +67,14 @@ export class TriviaGame extends React.Component {
 
     submitAnswer(){
 
-      var answer = document.getElementById('answer').value;
+      var answer = document.getElementById('answer').value.toLowerCase();
       
      
-      if (answer === this.state.country.name) {
+      if (answer === this.state.country.name.toLowerCase()) {
         alert("You are correct!")
         this.addCorrectAnswer();  
  
-      } else if (answer !== this.state.country.name ){
+      } else if (answer !== this.state.country.name.toLowerCase()){
         alert ("Sorry you are incorrect. The correct answer is " + this.state.country.name);
         this.addIncorrectAnswer();
            
@@ -133,7 +133,7 @@ export class TriviaGame extends React.Component {
         <div className="triviaGame">
           <div className="triviaInterface">
             <h1>
-              Trivia Game
+              Guess The Flag
             </h1>
           </div>
           <div className= "Score">
