@@ -85,7 +85,18 @@ export class TriviaGame extends React.Component {
         hasAlreadyAnswered: true,
         value: ''
       })
+
+      getNewQuestion().then(res => {
+        
+        this.setState({
+          country: res,
+          hasAlreadyAnswered: false,
+          value: ''
+        });
+    });
     }
+
+
     skipQuestion() {
 
       this.addSkip();
@@ -169,6 +180,7 @@ export class TriviaGame extends React.Component {
           </div>
           <div className = "TextBox">
              <input className = "Answer"
+              
               type="text" id = 'answer' value={this.state.value} onChange={this.handleChange} />
           </div>
           <div className="triviaButtons">
@@ -186,12 +198,17 @@ export class TriviaGame extends React.Component {
                Submit Answer
                </button> }
 
-            <button className="Next"
+          
+            
+            {/* <button className="Next"
               style={{float: 'right'}}
               onClick={() => this.nextQuestion()}>
                 Next Question
-              </button>
+              </button> */}
+              
+              
             <button className="Skip"
+             style={{float: 'right'}}
              onClick ={() => this.skipQuestion()}>
                Skip Question
              </button>
