@@ -2,8 +2,12 @@ import React from 'react';
 import './trivia_game.css';
 import {testFunction, getNewQuestion, checkAnswer} from '../../backend/countries_api';
 import {Country} from '../../backend/models/country.js';
+import swal from '@sweetalert/with-react';
+
+
 
 export class TriviaGame extends React.Component {
+  
   
     constructor(props) {
       super(props);
@@ -17,12 +21,14 @@ export class TriviaGame extends React.Component {
         country: new Country('Canada', 'https://restcountries.eu/data/can.svg'),
         isMounted: false,
         isAnswerEntered: false,
-        hasAlreadyAnswered: false
+        hasAlreadyAnswered: false,
+        
       };
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
+
 
     componentDidMount() { 
       getNewQuestion().then(res => {
@@ -53,7 +59,6 @@ export class TriviaGame extends React.Component {
 
     nextQuestion() {
 
-    
       getNewQuestion().then(res => {
         
         this.setState({
@@ -68,14 +73,13 @@ export class TriviaGame extends React.Component {
 
       var answer = document.getElementById('answer').value.toLowerCase();
       
-     
       if (answer === this.state.country.name.toLowerCase()) {
-        alert("You are correct!")
+        swal("Good job!", "You are correct!", "success");
         this.addCorrectAnswer();
         this.addQuestion()  
  
       } else if (answer !== this.state.country.name.toLowerCase()){
-        alert ("Sorry you are incorrect. The correct answer is " + this.state.country.name);
+        swal("Sorry, you are incorrect", "The correct response is " +this.state.country.name, "error");
         this.addIncorrectAnswer();
         this.addQuestion()
            
@@ -138,16 +142,17 @@ export class TriviaGame extends React.Component {
       })
     }
 
- 
-  
   render() {
+  
       return (
+        
         <div className="triviaGame">
           <div className="triviaInterface">
             <h1>
               Guess The Flag
             </h1>
           </div>
+
           <div className= "Score">
             <h3>
               {"Total questions: " + this.state.questions}
@@ -178,42 +183,42 @@ export class TriviaGame extends React.Component {
              Please enter the country that has the flag shown above.
             </h3>
           </div>
-          <div className = "TextBox">
-             <input className = "Answer"
-              
-              type="text" id = 'answer' value={this.state.value} onChange={this.handleChange} />
-          </div>
-          <div className="triviaButtons">
-              {(this.state.isAnswerEntered && !this.state.hasAlreadyAnswered) ?
-               <button className="Submit"
-               style={{float: 'left'}}
-               onClick={() => this.submitAnswer() }>
-               Submit Answer
-               </button> :
 
-               <button className="NotAvailable"
-               disabled={true}
-               style={{float: 'left'}} 
-               onClick={() => this.submitAnswer() }>
-               Submit Answer
-               </button> }
+          <div>
+            <form onSubmit={this.submitAnswer}>
+              <input type="text" 
+               id = 'answer' 
+               value={this.state.value} onChange={this.handleChange} 
 
-          
-            
-            {/* <button className="Next"
-              style={{float: 'right'}}
-              onClick={() => this.nextQuestion()}>
-                Next Question
-              </button> */}
-              
-              
+              placeholder="Enter answer here" 
+              ref={(ele)=>this._newTaskInput=ele} 
+              className="Answer"/>
+
+             {(this.state.isAnswerEntered && !this.state.hasAlreadyAnswered) ?
+
+            <button className="Submit"
+            type="submit"
+            style={{float: 'left'}}
+            onClick={() => this.submitAnswer() }>
+            Submit
+            </button> :
+
+            <button className="NotAvailable"
+            disabled={true}
+            style={{float: 'left'}} 
+            onClick={() => this.submitAnswer() }>
+            Submit
+            </button> }
+
             <button className="Skip"
-             style={{float: 'right'}}
-             onClick ={() => this.skipQuestion()}>
-               Skip Question
-             </button>
-
+            style={{float: 'right'}}
+            onClick ={() => this.skipQuestion()}>
+            Skip
+            </button>
+            </form>
           </div>
+
+
         </div>
       )
     }
