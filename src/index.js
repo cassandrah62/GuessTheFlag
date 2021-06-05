@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import TriviaGame from './frontend/components/trivia_game.js';
+import App from './frontend/components/main_page.js';
+
+
 
 // class Square extends React.Component {
 //   render() {
@@ -62,7 +64,56 @@ import TriviaGame from './frontend/components/trivia_game.js';
 
 // ========================================
 
+
+
+//     <Router>
+//       <div>
+//         <nav>
+//           <ul>
+//             <li>
+//               <Link to="/">Guess The Flag</Link>
+//             </li>
+//             <li>
+//               <Link to="/about">About</Link>
+//             </li>
+//             <li>
+//               <Link to="/users">Users</Link>
+//             </li>
+//           </ul>
+//         </nav>
+
+//         {/* A <Switch> looks through its children <Route>s and
+//             renders the first one that matches the current URL. */}
+//         <Switch>
+//           <Route path="/about">
+//             <About />
+//           </Route>
+//           <Route path="/users">
+//             <Users />
+//           </Route>
+//           <Route path="/">
+//             <GuessTheFlag />
+//           </Route>
+//         </Switch>
+//       </div>
+//     </Router>
+  
+
+
+// function GuessTheFlag() {
+//   return <h2>Guess The Flag</h2>;
+// }
+
+// function About() {
+//   return <h2>About</h2>;
+// }
+
+// function Users() {
+//   return <h2>Users</h2>;
+// }
+
+
 ReactDOM.render(
-  <TriviaGame />,
+  <App />,
   document.getElementById('root')
 );
