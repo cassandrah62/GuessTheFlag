@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+The Memory Game was initially created following a tutorial which can be found here: https://www.code-boost.com/react-memory-game/
+
 ## Available Scripts
 
 In the project directory, you can run:
