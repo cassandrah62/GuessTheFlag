@@ -1,6 +1,9 @@
 # Getting Started with Create React App
+This project was started during a hackathon and has since grown into a more advanced project containing multiple games!
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+The Memory Game was initially created following a tutorial which can be found here: https://www.code-boost.com/react-memory-game/
 
 ## Available Scripts
 
