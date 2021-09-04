@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-This project started at a hackathon and has since grown into a more advanced project containing multiple games!
+This project was started during a hackathon and has since grown into a more advanced project containing multiple games!
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
