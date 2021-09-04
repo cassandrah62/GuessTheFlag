@@ -1,3 +1,147 @@
 
 
+body {
+    text-align: center;
+    font-family: 'Monaco', Monospace;
+    background-color: #F1F1F1;
+    
+    
+  }
+
+  .title2 {
+    font-size: 25px;
+    font-family: 'Monaco', Monospace;
+    
+  
+
+  }
+
+  .message {
+    font-family: 'Monaco', Monospace;
+    
+  }
+
+
+  .score {
+    border-style: solid;
+    border-radius: 5px;
+    border-color:black;
+    font-family: 'Monaco', Monospace;
+    margin-bottom: 5px;
+    margin-left: 90%;
+    margin-right: 5%;
+    margin-top: 5px;
+    display: inline-block;
+    background-color: darkgray;
+    
+  } .score:hover {
+    background: lightgray;
+  }
+
+  .timer {
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 4px;
+    margin-left: 42%;
+    margin-right: 42%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-bottom: 8px;
+    font-family: 'Monaco', Monospace;
+    font-size: 30px;
+    background-color: lightcoral;
+  
+
+   
+  }
+  
+  .Flips {
+    font-family: 'Monaco', Monospace;
+    font-size: 30px;
+
+  }
+
+  .resetScore {
+    margin-right: 5%;
+    margin-left: 90%;
+    margin-top: 5px;
+    background-color: darkgray;
+    border-color: black;
+    border-radius: 4px;
+    font-family: 'Monaco', Monospace;
+    display: inline-block;
+
+  } .resetScore:hover {
+    background: lightgrey;
+  }
+
+  .Options {
+
+    font-family: 'Monaco', Monospace;
+    background: #034d48;
+    border-radius: 4px;
+    border-color: black;
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
+    padding: 7px 15px;
+    margin-left: 8px;
+    cursor: pointer;
+    margin-bottom: 20px; 
+  }
+
+  .Options:hover {
+    background: #11a79a;
+  }
+
+  .Options:focus {
+    outline: 0;
+  }
+
+  #cards {
+    width: 1060px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  
+    
+  }
+
+  .card {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 20px;
+ 
+  }
+
+  .card:not(:nth-child(6n)) {
+    margin-right: 20px;
+  }
+
+  .c {
+    position: absolute;
+    max-width: 160px;
+    max-height: 160px;
+    width: 50ch;
+    height: 50ch;
+    cursor: pointer;
+    will-change: transform, opacity;
+    border-radius: 50%;
+  }
+
+  .front,
+  .back {
+    background-size: cover;
+    border: 5px solid black;
+  }
+
+  .back {
+    background-image: url(https://images.unsplash.com/photo-1565373987291-4d7424dd9e59?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGF0dGVybnN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60);
+  }
+
+  .front {
+    background-image: url(https://images.unsplash.com/photo-1508193638397-1c4234db14d8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9yZXN0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60);
+  }
+
+
 

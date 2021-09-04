@@ -1,19 +1,52 @@
+
 .triviaGame {
     text-align: center;
+
 }
 
-/* .triviaButtons {
-    width: 600px;
-    height: 100px;
-} */
+.title {
+
+    text-align: center;
+    font-family: 'Monaco', Monospace;
+    font-size: 60px;
+
+
+
+}
+
+.reset {
+
+    margin-right: 5%;
+    margin-left: 90%;
+    background-color: darkgray;
+    border-color: black;
+    border-radius: 4px;
+    font-family: 'Monaco', Monospace;
+    
+}
+
+.reset:hover {
+    background: lightgrey;
+}
+
+body {
+    background-color: #F1F1F1;
+  
+  }
+
+.Score {
+    margin-top: 4%;
+  }
 
 .Submit {
+    
+    font-family: 'Monaco', Monospace;
+    border-color: black;
+    border-radius: 4px;
     background-color: red;
-    border: none;
     color: black;
     padding: 10px 10px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 32px;
     width: 25%;
@@ -21,31 +54,40 @@
     margin-bottom: 5%;
     
     
+} 
+
+.Submit:hover {
+    background: rgb(219, 126, 103);
 }
 
 .Skip {
+
+    font-family: 'Monaco', Monospace;
+    border-color: black;
+    border-radius: 4px;
     background-color: red;
-    border: none;
     color: black;
     padding: 10px 10px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 32px;
     width: 25%;
     margin-right: 20%;
     margin-bottom: 5%;
+}
 
-
+.Skip:hover {
+    background: rgb(219, 126, 103);
 }
 
 .NotAvailable {
+    font-family: 'Monaco', Monospace;
+    border-color: black;
+    border-radius: 4px;
     background-color: rgb(75, 75, 75);
-    border: none;
     color: black;
     padding: 10px 10px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 32px;
     width: 25%;
@@ -53,21 +95,9 @@
     
 }
 
-
-
-/* .Next {
-    background-color: red;
-    border: none;
-    color: black;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 32px;
-    width: 25%;
-    margin-right: 10%;
-    
-}*/
+/* .NotAvailable:hover {
+    background: darkgrey;
+} */
 
 .Flag {
     align-content: center;
@@ -93,7 +123,6 @@
 }
 
 
-
 .Score {
     margin-left: 10%;
     margin-right: 10%;
@@ -102,7 +131,7 @@
 
 .alert {
     padding: 20px;
-    background-color: #f44336; /* Red */
+    background-color: #f44336; 
     color: white;
     margin-bottom: 15px;
   }

@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import './trivia_game.css';
 import {testFunction, getNewQuestion, checkAnswer} from '../backend/countries_api';
 import {Country} from '../backend/models/country.js';
 import swal from '@sweetalert/with-react';
-
+import { createGlobalstate, start, store, useGlobalState} from 'state-pool';
 
 import {App} from '../frontend/components/main_page.js';
 
 
+
 export class TriviaGame extends React.Component {
-  
-  
+
     constructor(props) {
       super(props);
       
       this.state = {
-        // questions: 0,
-        // correct: 0,
-        // incorrect: 0,
-        // skipped: 0,
+        // set state values
+        questions: parseInt(localStorage.getItem('questions') == null ? "0" : localStorage.getItem('questions')),
+        correct: parseInt(localStorage.getItem('correct') == null ? "0" : localStorage.getItem('correct')),
+        incorrect: parseInt(localStorage.getItem('incorrect') == null ? "0" : localStorage.getItem('incorrect')),
+        skipped: parseInt(localStorage.getItem('skipped') == null ? "0" : localStorage.getItem('skipped')),
         value: '',
         country: new Country('Canada', 'https://restcountries.eu/data/can.svg'),
         isMounted: false,
@@ -27,13 +28,14 @@ export class TriviaGame extends React.Component {
         
       };
 
-      
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
+    
+ 
     componentDidMount() { 
+
       getNewQuestion().then(res => {
 
         this.setState({
@@ -41,6 +43,7 @@ export class TriviaGame extends React.Component {
           isMounted: true
         });
     });
+
     }
 
 
@@ -73,27 +76,32 @@ export class TriviaGame extends React.Component {
     }
 
     submitAnswer(){
+      // when an answer is submitted, check if it is correct
 
       var answer = document.getElementById('answer').value.toLowerCase();
       
       if (answer === this.state.country.name.toLowerCase()) {
         swal("Good job!", "You are correct!", "success");
-        this.props.addCorrectAnswer();
-        this.props.addQuestion()  
+        // add to the required state values
+        this.addCorrectAnswer();
+        this.addQuestion();
+        
  
       } else if (answer !== this.state.country.name.toLowerCase()){
         swal("Sorry, you are incorrect", "The correct response is " +this.state.country.name, "error");
-        this.props.addIncorrectAnswer();
-        this.props.addQuestion()
+        this.addIncorrectAnswer();
+        this.addQuestion();
            
       }
 
       this.setState({
+        // already answered so cannot answer again
         hasAlreadyAnswered: true,
         value: ''
       })
 
       getNewQuestion().then(res => {
+        // get a new question 
         
         this.setState({
           country: res,
@@ -101,12 +109,15 @@ export class TriviaGame extends React.Component {
           value: ''
         });
     });
+    
     }
 
 
     skipQuestion() {
+      // skip a question and retrieve a new flag 
 
-      this.props.addSkip();
+      this.addQuestion();
+      this.addSkip();
       getNewQuestion().then(res => {
         
         this.setState({
@@ -117,75 +128,124 @@ export class TriviaGame extends React.Component {
     });
     }
 
-    // addCorrectAnswer() {
-    //   let new_score = this.state.correct += 1;
-    //   this.setState({
-    //     correct: new_score
-    //   })
-    // }
+    addCorrectAnswer() {
+      // add correct answer and store in the local storage
+      let new_correct = this.state.correct += 1;
+ 
+      console.log("this is new correct:" + new_correct);
 
-    // addIncorrectAnswer() {
-    //   let new_score = this.state.incorrect += 1;
-    //   this.setState({
-    //     incorrect: new_score
-    //   })
-    // }
+      this.setState(
+        { correct: new_correct}, //updater
+        () => { localStorage.setItem('correct', this.state.correct) } // callback
+        );
+      
+    }
 
-    // addQuestion() {
-    //   let new_score = this.state.questions += 1;
-    //   this.setState({
-    //     questions: new_score
-    //   })
-    // }
+    addIncorrectAnswer() {
+      // add incorrect answer and store in local storage 
+      let new_incorrect = this.state.incorrect += 1;
 
-    // addSkip() {
-    //   let new_score = this.state.skipped += 1;
-    //   this.setState({
-    //     skipped: new_score
-    //   })
-    // }
+      this.setState(
+        { incorrect: new_incorrect}, //updater
+        () => { localStorage.setItem('incorrect', this.state.incorrect) } // callback
+        );
 
-  render() {
-    
+    }
+
+    addQuestion() {
+      // add question and store in local storage 
+      let new_questions = this.state.questions += 1;
   
-      return (
+      console.log("this is new questions:" + new_questions);
+
+      this.setState(
+        { questions: new_questions}, //updater
+        () => { localStorage.setItem('questions', this.state.questions)} // callback
+        );
         
+        console.log("local storage:" + (localStorage.getItem('questions')));
+    }
+
+    addSkip() {
+      // add skip and store in local storage 
+
+      let new_skipped = this.state.skipped += 1;
+      
+      this.setState(
+        { skipped: new_skipped}, //updater
+        () => { localStorage.setItem('skipped', this.state.skipped)} // callback
+        );
+
+    }
+
+    resetStorage() {
+      // reset the local storage values 
+
+      this.setState(
+        { questions: 0,
+          correct : 0,
+          incorrect: 0,
+          skipped: 0
+        }, //updater
+        () => { 
+          localStorage.setItem('questions', 0);
+          localStorage.setItem('correct', 0);
+          localStorage.setItem('incorrect', 0);
+          localStorage.setItem('skipped', 0);
+          } // callback
+        );
+
+    }
+  
+  render() 
+
+  { 
+    
+    return (
+
         <div className="triviaGame">
-          <div className="triviaInterface">
+          <div className="triviaInterface" >
             
-            <h1>
+          <div>
+            <div>
+              <button className= "reset" onClick={() => this.resetStorage() }
+               style={{float: 'right'}}>
+                Clear Scores
+              
+              </button>
+            </div>
+
+
+          </div>
+
+
+            <h1 className="title" >
               Guess The Flag
             </h1>
           
-        <div>
-          <div> count: {this.props.number} </div>
-            <button onClick = {this.props.add}> add
-            </button>
-                
-          </div>
-        </div>
+         
 
-        <div>
-            <div> count: {this.props.count} </div>
-            <div> number of hi: {this.props.number} </div>
-                <button onClick={this.props.increment}> increment </button>
-                <button onClick={this.props.decrement}> decrement </button>
-                <button onClick={this.props.add}> add </button>
-             </div>
+         </div>
+
 
           <div className= "Score">
             <center>
-            <div>
-             Total questions:  {this.props.questions} |
+            
+              <h3>
+             Total questions:  {this.state.questions} |
               &nbsp;
-             Correct answers:   {this.props.correct} |
+             Correct answers:   {this.state.correct} |
              &nbsp;
-             Incorrect answers:  {this.props.incorrect} |
+             Incorrect answers:  {this.state.incorrect} |
              &nbsp;
-             Questions skipped:  {this.props.skipped}
-            </div>
+             Questions skipped:  {this.state.skipped}
+             
+             </h3>
+            
             </center>
           </div>
+
+
          
           <div className="countryFlag">
             {this.state.isMounted ? 
@@ -203,35 +263,40 @@ export class TriviaGame extends React.Component {
             </h3>
           </div>
 
+
           <div>
+
             <form onSubmit={this.submitAnswer}>
               <input type="text" 
                id = 'answer' 
-               value={this.state.value} onChange={this.handleChange} 
-
-              placeholder="Enter answer here" 
-              ref={(ele)=>this._newTaskInput=ele} 
-              className="Answer"/>
+               value={this.state.value} 
+               onChange={this.handleChange} 
+               placeholder="Enter answer here" 
+               ref={(ele)=>this._newTaskInput=ele} 
+               className="Answer"/>
 
              {(this.state.isAnswerEntered && !this.state.hasAlreadyAnswered) ?
 
             <button className="Submit"
             type="submit"
             style={{float: 'left'}}
-            onClick={() => this.submitAnswer() }>
+            onClick={() => this.submitAnswer() } 
+            >
             Submit
             </button> :
 
             <button className="NotAvailable"
             disabled={true}
             style={{float: 'left'}} 
-            onClick={() => this.submitAnswer() }>
+            onClick={() => this.submitAnswer() }
+            >
             Submit
             </button> }
 
             <button className="Skip"
             style={{float: 'right'}}
-            onClick ={() => this.props.skipQuestion()}>
+            onClick ={() => this.skipQuestion()}
+            >
             Skip
             </button>
             </form>
