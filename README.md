@@ -5,6 +5,20 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The Memory Game was initially created following a tutorial which can be found here: https://www.code-boost.com/react-memory-game/
 
+## Project Screenshots
+
+Below is an image of the memory game running in easy mode. 
+![Screenshot (60)](https://user-images.githubusercontent.com/77758672/134102041-dc9c357a-2b6a-430c-b6c4-ad1a9774aa9b.png)
+
+This is a screenshot of the high score tracking in the memory game.
+![Screenshot (61)](https://user-images.githubusercontent.com/77758672/134102047-2b54d9d0-1c46-4d26-9860-04b2a49ff33d.png)
+
+Below is an image of the country flag trivia interface.
+![Screenshot (62)](https://user-images.githubusercontent.com/77758672/134102051-b58c16bb-f1fe-4d7f-ada6-fc485737ed71.png)
+
+This is an image of the alert for a correct response. 
+![Screenshot (63)](https://user-images.githubusercontent.com/77758672/134102064-08585b83-757d-4e7a-84b0-716fdd1802c4.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
