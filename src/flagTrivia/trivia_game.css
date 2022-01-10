@@ -1,45 +1,42 @@
-
-.triviaGame {
+.triviaGame 
+{
     text-align: center;
-
 }
 
-.title {
-
+.title 
+{
     text-align: center;
     font-family: 'Monaco', Monospace;
     font-size: 60px;
-
-
-
 }
 
-.reset {
-
+.reset 
+{
     margin-right: 5%;
     margin-left: 90%;
     background-color: darkgray;
     border-color: black;
     border-radius: 4px;
-    font-family: 'Monaco', Monospace;
-    
+    font-family: 'Monaco', Monospace;  
 }
 
-.reset:hover {
+.reset:hover 
+{
     background: lightgrey;
 }
 
-body {
+body
+{
     background-color: #F1F1F1;
-  
-  }
+}
 
-.Score {
+.Score 
+{
     margin-top: 4%;
-  }
+}
 
-.Submit {
-    
+.Submit
+{
     font-family: 'Monaco', Monospace;
     border-color: black;
     border-radius: 4px;
@@ -51,17 +48,16 @@ body {
     font-size: 32px;
     width: 25%;
     margin-left: 20%;
-    margin-bottom: 5%;
-    
-    
+    margin-bottom: 5%; 
 } 
 
-.Submit:hover {
+.Submit:hover 
+{
     background: rgb(219, 126, 103);
 }
 
-.Skip {
-
+.Skip 
+{
     font-family: 'Monaco', Monospace;
     border-color: black;
     border-radius: 4px;
@@ -76,11 +72,13 @@ body {
     margin-bottom: 5%;
 }
 
-.Skip:hover {
+.Skip:hover 
+{
     background: rgb(219, 126, 103);
 }
 
-.NotAvailable {
+.NotAvailable 
+{
     font-family: 'Monaco', Monospace;
     border-color: black;
     border-radius: 4px;
@@ -92,24 +90,21 @@ body {
     font-size: 32px;
     width: 25%;
     margin-left: 20%;
-    
 }
 
-/* .NotAvailable:hover {
-    background: darkgrey;
-} */
 
-.Flag {
+.Flag 
+{
     align-content: center;
     margin-left: auto;
     margin-right: auto;
-    
     max-width: 600px;
     max-height: 400px;
     border: 4px solid black;
 }
 
-.Answer {
+.Answer 
+{
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 28pt;
@@ -118,25 +113,25 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 60%;
-       
-
 }
 
-
-.Score {
+.Score 
+{
     margin-left: 10%;
     margin-right: 10%;
     text-align: left;
 }
 
-.alert {
+.alert 
+{
     padding: 20px;
     background-color: #f44336; 
     color: white;
     margin-bottom: 15px;
-  }
+}
 
-  .closebtn {
+.closebtn
+{
     margin-left: 15px;
     color: white;
     font-weight: bold;
@@ -145,16 +140,15 @@ body {
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
-  }
+}
 
-  .closebtn:hover {
+.closebtn:hover 
+{
     color: black;
-  }
+}
 
-    
-.alert {
-
+.alert 
+{
     color: black;
     background-color: aqua;
-
 }

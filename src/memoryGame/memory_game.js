@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated as a } from "react-spring";
 import swal from '@sweetalert/with-react';
-
 import './memory_game.css';
 
-
-
-
-
-export default function App() {
+export default function App()
+{
   const [options, setOptions] = useState(null)
   const [easyScore, setEasyScore] = useState(0)
   const [medScore, setMedScore] = useState(0)
@@ -18,78 +14,80 @@ export default function App() {
   const [isActive, setIsActive] = useState(false);
   const [gameFinished, setGameFinished] = useState(false)
   const [flips, setFlips] =  useState(0);
-  
+  const [firstScore, setFirstScore] = useState(true);
 
-
-  useEffect(() => {
+  useEffect(() => 
+  {
     const easy = localStorage.getItem('easyhighscore')
     const savedEasyScore = JSON.parse(easy)
 
-    if (savedEasyScore) {
+    if (savedEasyScore) 
+    {
       setEasyScore(savedEasyScore)
     }
-
 
     const medium = localStorage.getItem('mediumhighscore')
     const savedMediumScore = JSON.parse(medium)
 
-    if (savedMediumScore) {
+    if (savedMediumScore) 
+    {
       setMedScore(savedMediumScore)
     }
 
     const hard = localStorage.getItem('hardhighscore')
     const savedHardScore = JSON.parse(hard)
 
-    if (savedHardScore) {
+    if (savedHardScore) 
+    {
       setHardScore(savedHardScore)
     }
 
     const extreme = localStorage.getItem('extremehighscore')
     const savedExtremeScore = JSON.parse(extreme)
 
-    if (savedExtremeScore) {
+    if (savedExtremeScore) 
+    {
       setExtremeScore(savedExtremeScore)
     }
 
-
-
-    
-
   }, [])
 
-
-
-function resetScore() {
-  setEasyScore(0);
-  setMedScore(0);
-  setHardScore(0);
-  setExtremeScore(0);
-  localStorage.setItem('memorygamehighscore', 0)
-
-}
-if (gameFinished == true) {
-  reset();
-  setGameFinished(false);
-  console.log(gameFinished);
-  
-}
-
-  function reset() {
-    setSeconds(0);
-    setIsActive(false);
-
+  function resetScore() 
+  {
+    setEasyScore(0);
+    setMedScore(0);
+    setHardScore(0);
+    setExtremeScore(0);
+    localStorage.setItem('memorygamehighscore', 0);
+    setFirstScore(true);
   }
 
-  useEffect(() => {
+  if (gameFinished == true) 
+  {
+    reset();
+    setGameFinished(false);
+    console.log(gameFinished);
+  }
 
+  function reset() 
+  {
+    setSeconds(0);
+    setIsActive(false);
+  }
+
+  useEffect(() => 
+  {
     let interval = null;
 
-    if (isActive) {
-      interval = setInterval(() => {
+    if (isActive) 
+    {
+      interval = setInterval(() => 
+      {
         setSeconds(seconds => seconds + 10);
       }, 10);
-
-    } else {
+    } 
+    else 
+    {
       clearInterval(interval);
     }
 
@@ -97,131 +95,131 @@ if (gameFinished == true) {
   }, [isActive]);
 
 
-  function startA() {
+  function startA()
+  {
     setIsActive(!isActive);
     setOptions(12);
-
   }
 
-  function startB() {
+  function startB() 
+  {
     setIsActive(!isActive);
     setOptions(18);
-
   }
 
-  function startC() {
+  function startC() 
+  {
     setIsActive(!isActive);
     setOptions(24);
-
   }
 
-  function startD() {
+  function startD() 
+  {
     setIsActive(!isActive);
     setOptions(30);
   }
 
-  function restart() {
+  function restart()
+  {
     reset();
     setOptions(null);
-
   }
 
-  function displayScores() {
+  function displayScores() 
+  {
     swal("Easy: " + easyScore +"\n" + "Medium: " + medScore
     +"\n" + "Hard: " + hardScore + "\n" + "Extreme: " + extremeScore
     )
-
   }
  
-
-
   return (
      
     <div>
-
-    <div>
-        
-
-        <button className="resetScore"
+      <div>
+        <button 
+          className="resetScore"
           onClick= {() => resetScore()}>
-            Reset Score
+          Reset Score
         </button>
 
-        <button className="score"
-        onClick={() => displayScores()}>
+        <button 
+          className="score"
+          onClick={() => displayScores()}>
           High Scores
-        </button>
-        
-    
+        </button> 
+      </div>
 
-      <div className="title2">
-        <h1>Memory Game</h1>
-
+      <div 
+        className="title2">
+        <h1>
+          Memory Game
+        </h1>
       <div> 
+  
         
+      <div 
+        className="app">
+        <div 
+          className="timer">
 
-      </div>
-        
-    
-          
+          <span 
+            className="digits">
+            {("0" + Math.floor((seconds / 60000) % 60)).slice(-2)}:
+          </span>
+
+          <span 
+            className="digits">
+            {("0" + Math.floor((seconds / 1000) % 60)).slice(-2)}.
+          </span>
+
+          <span 
+            className="digits mili-sec">
+            {("0" + ((seconds / 10) % 100)).slice(-2)}
+          </span>
         </div>
-        
-        <div className="app">
-        <div className="timer">
-
-        <span className="digits">
-          {("0" + Math.floor((seconds / 60000) % 60)).slice(-2)}:
-        </span>
-        <span className="digits">
-          {("0" + Math.floor((seconds / 1000) % 60)).slice(-2)}.
-        </span>
-        <span className="digits mili-sec">
-          {("0" + ((seconds / 10) % 100)).slice(-2)}
-        </span>
       </div>
 
-    
       </div>
-
-      
-
         <div>
-
-          {(options === null && isActive == false) ? (
-
+          {(options === null && isActive == false) ? 
+          (
             <>
-       
-              <button className="Options" 
-              onClick={() => startA()}
-              >Easy</button>
+              <button 
+                className="Options" 
+                onClick={() => startA()}>
+                Easy
+              </button>
 
-              <button className="Options" 
-              onClick={() => startB()}
-              >Medium</button>
+              <button 
+                className="Options" 
+                onClick={() => startB()}>
+                Medium
+              </button>
 
-              <button className="Options" 
-              onClick={() => startC()}
-              >Hard</button>
+              <button 
+                className="Options" 
+                onClick={() => startC()}>
+                Hard
+              </button>
 
-              <button className="Options" 
-              onClick={() => startD()}
-              >Extreme</button>
-        
+              <button 
+                className="Options" 
+                onClick={() => startD()}>
+                Extreme
+              </button>
             </>
-
           ) : (
             <>
-                <button className="Options" onClick={() => restart()}
-                >Start Over</button>  
+                <button 
+                  className="Options" 
+                  onClick={() => restart()}>
+                  Start Over
+                </button>  
             </>
           )}
-      
         </div>
       </div>
 
-    
-
-     
       {options ? (
         <MemoryGame
           isActive={isActive}
@@ -240,31 +238,30 @@ if (gameFinished == true) {
           setMedScore={setMedScore}
           setHardScore={setHardScore}
           setExtremeScore={setExtremeScore}
+          firstScore = {firstScore}
+          setFirstScore={setFirstScore}
         />
       ) : (
-        <h2 className= "message ">Choose a difficulty to begin!</h2>
+        <h2 
+          className= "message ">
+          Choose a difficulty to begin!
+        </h2>
       )}
-
-  
-
-  
     </div>
-    
   )
 }
 
-
 function MemoryGame({setSeconds, setIsActive, isActive, seconds, options, setOptions, easyScore, setEasyScore, 
-  medScore, setMedScore, hardScore, setHardScore, extremeScore, setExtremeScore
- }) {
-
+  medScore, setMedScore, hardScore, setHardScore, extremeScore, setExtremeScore, firstScore, setFirstScore
+ }) 
+{
   const [game, setGame] = useState([])
   const [flippedCount, setFlippedCount] = useState(0)
   const [flippedIndexes, setFlippedIndexes] = useState([])
   const [gameFinished, setGameFinished] = useState(false)
   
-
-  const colour = [
+  const colour = 
+  [
     '#FF6E33',
     '#FFF233',
     '#72FF33',
@@ -277,45 +274,48 @@ function MemoryGame({setSeconds, setIsActive, isActive, seconds, options, setOpt
     '#8D575C',
     '#5C1C94',
     '#1C9435',
-  
   ]
 
-  const colourHard = [
-    'C36CE6',
-    'D4A7E7',
-    'C0ABC9',
-    '918098',
-    '694A76',
-    '8C4CA7',
-    '9226C0',
-    'A207E5',
-    '7904AB',
-    '530476',
-    '6C3882',
-    'D571FF',
-    'DFB2F2',
-    '720C9D',
-    '8E48AB',
-
+  const colourHard = 
+  [
+    '#d5c1e0',
+    '#e6dfeb',
+    '#ca92e8',
+    '#a947de',
+    '#9812e0',
+    '#6d00a8',
+    '#79389c',
+    '#805e91',
+    '#7d6e85',
+    '#463d4a',
+    '#6423a6',
+    '#801fe0',
+    '#a600ff',
+    '#30004a',
+    '#785da3',
   ]
 
-  useEffect(() => {
+  useEffect(() => 
+  {
     const newGame = []
 
-    if (options == 30) {
-
-      for (let i = 0; i < options/2; i++) {
-        const firstOption = {
-          id: 2 * i,
-          colourId: i,
-          colour: colourHard[i],
+    if (options == 30) 
+    {
+      for (let index = 0; index < options/2; index++) 
+      {
+        const firstOption = 
+        {
+          id: 2 * index,
+          colourId: index,
+          colour: colourHard[index],
           flipped: false,
         }
 
-        const secondOption = {
-          id: 2 * i + 1,
-          colourId: i,
-          colour: colourHard[i],
+        const secondOption = 
+        {
+          id: 2 * index + 1,
+          colourId: index,
+          colour: colourHard[index],
           flipped: false,
         }
 
@@ -325,19 +325,22 @@ function MemoryGame({setSeconds, setIsActive, isActive, seconds, options, setOpt
 
       const shuffleGame = newGame.sort(() => Math.random() - 0.5)
       setGame(shuffleGame)
-
     }
 
-    else {
-      for (let i = 0; i < options/2; i++) {
-        const firstOption = {
+    else 
+    {
+      for (let i = 0; i < options/2; i++) 
+      {
+        const firstOption = 
+        {
           id: 2 * i,
           colourId: i,
           colour: colour[i],
           flipped: false,
         }
 
-        const secondOption = {
+        const secondOption = 
+        {
           id: 2 * i + 1,
           colourId: i,
           colour: colour[i],
@@ -350,74 +353,113 @@ function MemoryGame({setSeconds, setIsActive, isActive, seconds, options, setOpt
 
       const shuffleGame = newGame.sort(() => Math.random() - 0.5 )
       setGame(shuffleGame)
-
     }
 
   }, [])
 
-  useEffect(() => {
+  useEffect(() => 
+  {
     // Loads when game variable changes
+    const finished = !game.some(card => !card.flipped)
 
-   const finished = !game.some(card => !card.flipped)
+    function reset() 
+    {
+      setSeconds(0);
+      setIsActive(false);
+    }
 
+    if (finished && game.length > 0) 
+    {
+      setTimeout(() => 
+      {
+        if(firstScore == true)
+        {
+          if (options == 12)
+          {
+            setEasyScore(Math.round(flippedCount))
+            const json = JSON.stringify(Math.round(flippedCount))
+            localStorage.setItem('easyhighscore', json)
+            setFirstScore(false)
+          } 
+          
+          else if (options == 18) 
+          {
+            setMedScore(Math.round(flippedCount))
+            const json = JSON.stringify(Math.round(flippedCount))
+            localStorage.setItem('mediumhighscore', json)
+            setFirstScore(false)
+          } 
+          
+          else if (options == 24) 
+          {
+            setHardScore(Math.round(flippedCount))
+            const json = JSON.stringify(Math.round(flippedCount))
+            localStorage.setItem('hardhighscore', json)
+            setFirstScore(false)
+          } 
+
+          else if (options == 30) 
+          {
+            setExtremeScore(Math.round(flippedCount))
+            const json = JSON.stringify(Math.round(flippedCount))
+            localStorage.setItem('extremehighscore', json)
+            setFirstScore(false)
+          }
+        }
+
+        else 
+        {
+          if (options == 12)
+          {
+            if (flippedCount < easyScore) 
+            {
+              setEasyScore(Math.round(flippedCount))
+              const json = JSON.stringify(Math.round(flippedCount))
+              localStorage.setItem('easyhighscore', json)
+            }
+          } 
+          
+          else if (options == 18) 
+          {
+            if (flippedCount < medScore)
+            {
+              setMedScore(Math.round(flippedCount))
+              const json = JSON.stringify(Math.round(flippedCount))
+              localStorage.setItem('mediumhighscore', json)
+            }
+          } 
+          
+          else if (options == 24) 
+          {
+            if (flippedCount < hardScore) 
+            {
+              setHardScore(Math.round(flippedCount))
+              const json = JSON.stringify(Math.round(flippedCount))
+              localStorage.setItem('hardhighscore', json)
+            }
+          } 
+  
+          else if (options == 30) 
+          {
+            if (flippedCount < extremeScore)
+            {
+              setExtremeScore(Math.round(flippedCount))
+              const json = JSON.stringify(Math.round(flippedCount))
+              localStorage.setItem('extremehighscore', json)
+            }
+          }
+        }
+       
+        reset();
+        swal('You Win! Moves: ' + flippedCount)
    
-  function reset() {
-    setSeconds(0);
-    setIsActive(false);
-
-  }
-
-
-  if (finished && game.length > 0) {
-
-    setTimeout(() => {
-   
-      if (options == 12) {
-
-        if (flippedCount < easyScore) {
-          setEasyScore(Math.round(flippedCount))
-          const json = JSON.stringify(Math.round(flippedCount))
-          localStorage.setItem('easyhighscore', json)
-        }
-
-      } else if (options == 18) {
-
-        if (flippedCount < medScore) {
-          setMedScore(Math.round(flippedCount))
-          const json = JSON.stringify(Math.round(flippedCount))
-          localStorage.setItem('mediumhighscore', json)
-        }
-
-      } else if (options == 24) {
-
-        if (flippedCount < hardScore) {
-          setHardScore(Math.round(flippedCount))
-          const json = JSON.stringify(Math.round(flippedCount))
-          localStorage.setItem('hardhighscore', json)
-        }
-
-      } else if (options == 30) {
-
-        if (flippedCount < extremeScore) {
-          setExtremeScore(Math.round(flippedCount))
-          const json = JSON.stringify(Math.round(flippedCount))
-          localStorage.setItem('extremehighscore', json)
-        }
-      }
-
-      
-      reset();
-      swal('You Win! Moves: ' + flippedCount)
-   
-    }, 500)
-  }
-
-
+      }, 500)
+    }
   }, [game])
 
 
-  if (flippedIndexes.length === 2) {
-
+  if (flippedIndexes.length === 2) 
+  {
     setFlippedCount(flippedCount + 1)
     localStorage.setItem('moves', flippedCount)
 
@@ -427,7 +469,8 @@ function MemoryGame({setSeconds, setIsActive, isActive, seconds, options, setOpt
 
     const match = game[flippedIndexes[0]].colourId === game[flippedIndexes[1]].colourId
 
-    if (match) {
+    if (match) 
+    {
       const newGame = [...game]
       newGame[flippedIndexes[0]].flipped = true
       newGame[flippedIndexes[1]].flipped = true
@@ -437,54 +480,54 @@ function MemoryGame({setSeconds, setIsActive, isActive, seconds, options, setOpt
       newIndexes.push(false)
       setFlippedIndexes(newIndexes)
 
-    } else {
+    } 
+    
+    else 
+    {
       const newIndexes = [...flippedIndexes]
       newIndexes.push(true)
       setFlippedIndexes(newIndexes)
     }
   }
 
-  if (game.length === 0) return <div>
-    loading ...
-  </div>
+  if (game.length === 0) 
+  {
+    return (
+      <div>
+        loading ...
+      </div>
+    )
+  }
 
-  else {
+  else 
+  {
     return (
 
       <div>
+        <div 
+          id="cards">
+          {game.map((card, index) => (
 
-
-      <div id="cards">
-       
-
-     
-        {game.map((card, index) => (
-          <div className= "card" key={index}>
-            <Card 
-            options={options}
-            id={index}
-            colour={(options == 30) ? (card.colourHard) : (card.colour)}
-            game={game}
-            flippedCount={flippedCount}
-            setFlippedCount={setFlippedCount}
-            flippedIndexes= {flippedIndexes}
-            setFlippedIndexes={setFlippedIndexes}
-            />
+            <div 
+              className= "card" key={index}>
+              <Card 
+                options={options}
+                id={index}
+                colour={card.colour}
+                game={game}
+                flippedCount={flippedCount}
+                setFlippedCount={setFlippedCount}
+                flippedIndexes= {flippedIndexes}
+                setFlippedIndexes={setFlippedIndexes}/>
             </div>
-
-
-
-        ))}
-
-          </div>
-        <div className= "Flips">
-          Moves: {flippedCount}
-          
+          ))}
         </div>
         
-      </div>
-    
-      
+        <div 
+          className= "Flips">
+          Moves: {flippedCount} 
+        </div> 
+      </div> 
     )
   }
 }
@@ -499,76 +542,69 @@ function Card({
   setFlippedCount,
   flippedIndexes,
   setFlippedIndexes,
-
-}) {
+}) 
+{
   const [flipped, set] = useState(false)
-  const {transform, opacity} = useSpring({
+
+  const {transform, opacity} = useSpring(
+  {
     opacity: flipped ? 1 : 0,
     transform: `perspective(600px) rotateX(${flipped ? 180 : 0} deg)`,
     config: {mass: 5, tension: 500, friction: 80},
-
+    
   })
 
-  useEffect(() => {
-
-    if (flippedIndexes[2] === true && flippedIndexes.indexOf(id) > -1) {
+  useEffect(() => 
+  {
+    if (flippedIndexes[2] === true && flippedIndexes.indexOf(id) > -1) 
+    {
       setTimeout(() => {
         set(state => !state)
  
         setFlippedIndexes([])
       }, 1000)
 
-    } else if (flippedIndexes[2] === false && id === 0) {
-
+    } 
+    
+    else if (flippedIndexes[2] === false && id === 0)
+    {
       setFlippedIndexes([])
     }
 
   }, [flippedIndexes])
 
-  const onCardClick = () => {
-    
+  const onCardClick = () => 
+  {
+    set(state => !state)
+    const newIndexes = [...flippedIndexes]
+    newIndexes.push(id)
+    setFlippedIndexes(newIndexes)
 
-      set(state => !state)
-    
-      const newIndexes = [...flippedIndexes]
-      newIndexes.push(id)
-      setFlippedIndexes(newIndexes)
-
-
-  }
-
-  if (options == 30) {
-     
-    
   }
 
   return (
-    <div onClick={onCardClick}>
+    <div 
+      onClick={onCardClick}>
       <a.div
-      className= "c back"
-      style= {{
-        opacity: opacity.interpolate(o => 1 - o),
-        transform,
-      }}
+        className= "c back"
+        style = 
+        {{
+          opacity: opacity.interpolate(o => 1 - o),
+          transform,
+        }}
       />
 
-    
       <a.div
-      className= "c front"
-      style= {{
-        opacity,
-        transform: transform.interpolate(t => `${t} rotateX(180deg)`),
-        background: colour,
-      }}
-
+        className= "c front"
+        style = 
+        {{
+          opacity,
+          transform: transform.interpolate(t => `${t} rotateX(180deg)`),
+          background: colour,
+        }}
       />
-      
-
     </div>
-
-
   )
-
 } 
 
 

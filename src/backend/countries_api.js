@@ -3,19 +3,18 @@ import axios from 'axios';
 import {Country} from './models/country.js'
 //import {TriviaGame} from './frontend/components/trivia_game.js'
 
-
-
-
-function getRandomInt(max) {
+function getRandomInt(max) 
+{
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-export async function getNewQuestion() {
+export async function getNewQuestion() 
+{
     const countries = countries_list.split(',');
     const country_index = getRandomInt(195);
     const country = countries[country_index];
     
-    const request_url = ('https://restcountries.eu/rest/v2/name/' + country);
+    const request_url = ('https://restcountries.com/v2/name/' + country);
 
     // Make the request with Axios
     const response = await axios.get(request_url);
@@ -23,7 +22,7 @@ export async function getNewQuestion() {
     let country_object = new Country(response.data[0].name, response.data[0].flag);
     return (country_object);
 
-    }
+}
 
 
 const countries_list = `
